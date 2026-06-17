@@ -23,11 +23,11 @@ I principali riferimenti progettuali per lo sviluppo del sito sono stati l'archi
 
 
 ## Design dell’interfaccia e modalità di interazione
-Facilisis magna etiam tempor orci eu. Felis donec et odio pellentesque diam volutpat commodo. Dis parturient montes nascetur ridiculus mus mauris vitae. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Accumsan sit amet nulla facilisi. Ultricies leo integer malesuada nunc vel risus. Est lorem ipsum dolor sit. Ultrices neque ornare aenean euismod elementum nisi. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Placerat duis ultricies lacus sed turpis tincidunt id aliquet. Arcu dictum varius duis at consectetur lorem donec massa sapien. Pellentesque habitant morbi tristique senectus. Turpis massa sed elementum tempus egestas sed sed risus pretium. Eros donec ac odio tempor orci. Pellentesque id nibh tortor id aliquet lectus. Risus feugiat in ante metus dictum at. Quam pellentesque nec nam aliquam sem et tortor consequat id. Feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Sit amet dictum sit amet justo donec enim.
+### Design dell'interfaccia:
+L’estetica dell'interfaccia si ispira al brutalismo digitale, in particolare per quanto riguarda l’uso di titolazioni molto grandi e la struttura a griglia adottata per le card. Questa scelta stilistica è stata fatta con lo scopo di trasmettere il senso di tecnicità e rigore scientifico che caratterizzano i dati della NASA. Inoltre, le dimensioni imponenti dei titoli sono state pensate per richiamare visivamente il concetto di immensità legato all'universo e ai corpi celesti studiati dall'agenzia.
 
-https://github.com/user-attachments/assets/38d1768e-a90e-45dd-b12b-1ac0aa1151b3
+### Modalità di interazione:
 
-[<img src="doc/cards.gif" width="500" alt="Magic trick">]()
 
 
 ## Tecnologia usata
