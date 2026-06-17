@@ -29,7 +29,15 @@ Infine, il carattere tipografico usato per il sito web è l’Helvetica, utilizz
 
 ### Modalità di interazione:
 L’esperienza utente inizia dalla home page, che presenta una breve descrizione volta a contestualizzare i contenuti e le finalità dell'archivio.
-<img width="1711" height="2821" alt="NASA 70 - Home" src="https://github.com/user-attachments/assets/719939c3-78ca-4de8-ae7c-4f9a44becb15" style="border: 3px solid black; margin-bottom: 30px; margin-top: 10px;" />
+<table>
+  <tr>
+    <td style="border: 2px solid #000000; padding: 10px;">
+      <img width="1711" height="2821" alt="NASA 70 - Home" src="https://github.com/user-attachments/assets/719939c3-78ca-4de8-ae7c-4f9a44becb15" />
+    </td>
+  </tr>
+</table>
+
+<br />
 
 Nella stessa pagina è presente la sezione Playlists of the Day, in cui vengono proposte quotidianamente tre raccolte basate su tematiche differenti. Ciascuna playlist include 9 progetti dell'archivio legati al tema del giorno, con lo scopo di guidare nella navigazione l'utente indeciso attraverso una selezione mirata di contenuti.
 <img width="3422" height="4996" alt="NASA 70 - Playlist" src="https://github.com/user-attachments/assets/7e33ed68-785a-4494-826a-8c3ee9da62d2" />
