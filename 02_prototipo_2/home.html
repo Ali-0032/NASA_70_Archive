@@ -1,59 +1,46 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <script>
-  // Se l'utente è appena entrato nel sito (arriva da fuori)
-  if (!document.referrer.includes('home.html')) {
-      // Lo spediamo subito alla Home
-      window.location.href = "home.html";
-  }
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NASA 70 - Archive</title>
+<title>NASA 70 - Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div class="page-wrapper">
+<body style="overflow-x: hidden;">
+<div class="page-wrapper" style="overflow-x: hidden;">
   <header>
     <img src="logo.svg" class="logo-svg" alt="Logo">
     <nav>
-      <a href="home.html">Home</a>
-      <a href="index.html" class="active-page">Archive</a>
+      <a href="home.html" class="active-page">Home</a>
+      <a href="index.html">Archive</a>
     </nav>
   </header>
   <main>
     <section class="archive-header">
-      <h1 class="main-archive-title">Archive</h1>
+      <div style="margin-top: 250px; margin-bottom: 250px; margin-left: -67px; margin-right: -67px;">
+        <img src="logo.svg" alt="NASA Logo" style="height: auto; width: 7000px; display: block; max-width: 100%;">
+      </div>
       
-      <div class="controls-bar">
-        <div class="control-block block-left">
-          <div class="dropdown-container">
-            <button id="btn-tags" class="bar-link-btn">Tags <span class="sort-arrow">▲</span></button>
-            <div id="tags-menu" class="dropdown-content">
-              </div>
-          </div>
+      <div style="margin-left: -67px; margin-right: -67px; margin-bottom: 120px; font-family: 'Helvetica', 'Arial', sans-serif;">
+        
+        <div style="border-top: 2px solid var(--text); border-bottom: 2px solid var(--text); padding-top: 70px; padding-bottom: 70px; margin-left: -67px; margin-right: -67px; padding-left: 67px; padding-right: 67px; margin-bottom: 0px;">
+          <p style="font-size: 65px; font-weight: normal; line-height: 1.2; margin: 0 0 85px 0; color: var(--text);">
+            This web archive was created to celebrate seventy years of NASA and the extraordinary conquest of space. <br>Inside, it brings together a series of projects dedicated to the visualization of data collected by the agency over the years.
+          </p>
+          <a href="index.html" style="font-size: 35px; font-weight: bold; text-decoration: underline; color: var(--text); display: inline-block;">
+            View Archive
+          </a>
         </div>
-        <div class="control-block block-center">
-          <div class="dropdown-container">
-            <button id="btn-sort" class="bar-link-btn">Sort by <span class="sort-arrow">▲</span></button>
-            <div id="sort-menu" class="dropdown-content">
-              <div class="sort-option" data-sort="author">Author</div>
-              <div class="sort-option" data-sort="title">Title</div>
-              <div class="sort-option" data-sort="date">Date</div>
-            </div>
-          </div>
-        </div>
-        <div class="control-block block-right">
-          <div class="search-wrap">
-            <svg class="search-icon-svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="6.5" cy="6.5" r="5.5" stroke="#aaa" stroke-width="1.5"/>
-              <line x1="10.5" y1="10.5" x2="15" y2="15" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <input type="text" id="search-input" placeholder="Search">
-          </div>
+
+        <div style="margin-left: 0; padding-left: 0px; padding-right: 0px; padding-top: 70px;">
+          <h2 style="font-size: 160px; font-weight: bold; line-height: 1.1; margin: 0; color: var(--text);">
+            Playlists of the Day
+          </h2>
+          <p style="font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 35px; color: var(--text); margin: 50px 0 50px 0; opacity: 1;">
+            Discover today's featured topics and their most iconic projects.
+          </p>
         </div>
       </div>
 
@@ -62,8 +49,9 @@
   </main>
 </div>
 
-<div id="archive-grid" class="table-container"></div>
+<div id="home-playlists-grid" class="table-container" style="margin-top: -60px; margin-bottom: 120px;"></div>
 
+<div id="archive-grid" class="table-container"></div>
 <div id="pagination-controls" class="pagination-container"></div>
 
 <footer class="main-footer">
@@ -73,8 +61,8 @@
       <div class="footer-group">
         <span class="footer-title">Navigate</span>
         <nav class="footer-links">
-          <a href="#">Home</a>
-          <a href="#" class="active-footer-page">Archive</a>
+          <a href="home.html" class="active-footer-page">Home</a>
+          <a href="index.html">Archive</a>
         </nav>
       </div>
     </div>

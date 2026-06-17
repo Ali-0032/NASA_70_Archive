@@ -18,415 +18,598 @@ body {
 }
 header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 80px; }
 
-/* Controllo dimensioni logo SVG */
+/* Controllo dimensioni logo SVG e allineamento a 33px dal bordo sinistro */
 .logo-svg {
-    height: 40px;
+    height: 25px;
     width: auto;
     display: block;
+    margin-left: -67px; /* Sposta il logo a 33px dal bordo sinistro della pagina (100px padding - 67px = 33px) */
 }
 
-nav a { margin-left: 20px; text-decoration: none; color: black; font-weight: bold; }
-.about { width: 748px; margin-bottom: 60px; }
-.about h1, .archive-header h1 { font-style: italic; font-weight: bold; }
+/* Allineamento e stile del menu di navigazione */
+nav {
+    display: flex;
+    gap: 20px;
+    margin-right: -67px; /* Sposta il menu a 33px dal bordo destro della pagina (100px padding - 67px = 33px) */
+}
+
+nav a { 
+    text-decoration: none; 
+    color: black; 
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-weight: bold; 
+    font-size: 16px;
+}
+
+/* Sottolineatura per la pagina attiva */
+nav a.active-page {
+    text-decoration: underline;
+}
 
 /* ============================================================
-   TABELLA PROGETTI — nuovo layout a card orizzontale
+   NUOVO TITOLO ARCHIVE (In grande, Helvetica Bold, speculare a 33px)
    ============================================================ */
-.table-container {
-    margin-top: 50px;
-    border-top: 1px solid var(--text);
+.main-archive-title {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 350px;
+    font-weight: bold;
+    font-style: normal;
+    margin-top: 0;
+    margin-bottom: 120px;
+    margin-left: -67px;   /* Allineato esattamente a 33px dal bordo sinistro della pagina (100px padding - 67px = 33px) */
+    margin-right: -67px;  /* Allineato esattamente a 33px dal bordo destro della pagina */
 }
 
-/* Ogni progetto è una riga separata da un bordo inferiore */
-.table-row-wrapper {
-    border-bottom: 1px solid var(--text);
-    padding: 24px 10px;
+/* ============================================================
+   BARRA CONTROLLI SUPERIORE (Bordi laterali rimossi di base)
+   ============================================================ */
+.controls-bar {
+    margin-left: -100px;
+    margin-right: -100px;
+    width: calc(100% + 200px);
+    padding-left: 0px;
+    padding-right: 0px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    border-top: 2px solid var(--text);
+    border-bottom: 2px solid var(--text);
+    background-color: var(--text);
+    margin-bottom: 120px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.control-block {
+    padding: 15px 33px;
     display: flex;
-    flex-direction: row;
-    gap: 30px;
-    align-items: flex-start;
+    align-items: center;
+    background: var(--bg);
 }
 
-/* Colonna sinistra: immagine + autore + data */
-.row-left {
+.block-left { justify-content: flex-start; }
+.block-center { justify-content: flex-start; }
+.block-right { justify-content: flex-start; }
+
+/* Pulsanti Tags e Sort By ingranditi a 20px */
+.bar-link-btn {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 20px; 
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--text);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Gestione e animazione della freccia */
+.sort-arrow {
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 4px;
+    transition: transform 0.2s ease;
+    transform: rotate(180deg); /* Di base guarda verso l'alto ▲ */
+}
+
+/* Quando il menu è aperto, ruota verso il basso ▼ */
+.bar-link-btn.menu-open .sort-arrow {
+    transform: rotate(0deg);
+}
+
+/* Input di ricerca ingrandito a 20px */
+.search-wrap {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-shrink: 0;
-    width: 200px;
-}
-
-/* Immagine quadrata */
-.row-image {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    background: #eee; /* placeholder se immagine mancante */
-}
-
-/* Autore e data sotto l'immagine */
-.row-meta {
-    margin-top: 10px;
+    align-items: center;
+    gap: 10px;
     width: 100%;
 }
-.row-meta-author {
-    font-size: 11pt;
-    font-weight: bold;
-    font-style: italic;
-    line-height: 1.4;
-}
-.row-meta-date {
-    font-size: 10pt;
-    font-style: italic;
-    color: #555;
-    line-height: 1.4;
-}
 
-/* Colonna destra: titolo + descrizione + bottone */
-.row-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex: 1;
-    gap: 12px;
-}
-
-.row-title {
-    font-size: 16pt;
-    font-weight: bold;
-    font-style: italic;
-    line-height: 1.3;
-    margin: 0;
-}
-
-.row-description {
-    font-size: 11pt;
-    line-height: 1.6;
-    color: #333;
-    margin: 0;
-}
-
-/* Bottone "view project" — stesso parallelogramma degli altri */
-.btn-view {
-    height: 30px;
-    border: 1px solid var(--text);
-    transform: skewX(var(--skew-deg));
-    background: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text);
-    transition: background 0.2s, color 0.2s;
-    margin-top: 4px;
-}
-.btn-view span {
-    display: inline-block;
-    transform: skewX(var(--unskew-deg));
-    padding: 0 20px;
-    font-size: 13pt;
-    font-family: 'Exo 2', sans-serif;
-    white-space: nowrap;
-}
-.btn-view:hover {
-    background: var(--text);
-    color: var(--bg);
-}
-
-/* ============================================================
-   UI Elements (invariati)
-   ============================================================ */
-.controls { display: flex; gap: 20px; margin-bottom: 20px; align-items: flex-start; }
-.parallelogram {
-    height: 30px;
-    border: 1px solid var(--text);
-    transform: skewX(var(--skew-deg));
-    background: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: background 0.2s, color 0.2s;
-}
-.parallelogram span, .parallelogram input {
-    display: inline-block;
-    transform: skewX(var(--unskew-deg));
-    padding: 0 20px;
-    font-size: 16pt;
-    font-family: 'Exo 2';
-    border: none; background: none; outline: none;
-}
-
-#btn-tags:hover {
-    background: var(--text);
-    color: var(--bg);
-}
-
-.sort-arrow {
-    font-size: 9pt;
-    vertical-align: middle;
-    margin-left: 4px;
-}
-
-#btn-sort:hover {
-    background: var(--text);
-    color: var(--bg);
-}
-
-.dropdown-container {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: -8.5px;
-    width: calc(100% - 0px);
-    background: #fff;
-    border: 1px solid #000;
-    border-top: none;
-    z-index: 10;
-}
-
-.sort-option {
-    padding: 10px 16px;
-    cursor: pointer;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 14pt;
-    text-align: left;
-    text-transform: lowercase;
-    transition: background 0.2s, color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.sort-option:hover { background: #000; color: #fff; }
-.sort-option.active { background: #000; color: #fff; }
-.sort-option .option-x { font-size: 10pt; margin-left: 10px; line-height: 1; }
-
-.show { display: block; }
-
-.active-tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.archive-chip {
-    position: relative;
-    height: 36px;
-    min-width: 120px;
-    border: 1px solid #000;
-    transform: skewX(var(--skew-deg));
-    background: #000;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s, color 0.15s;
-}
-.archive-chip .tag-label {
-    display: inline-block;
-    transform: skewX(var(--unskew-deg));
-    padding: 0 22px 0 18px;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 13pt;
-    white-space: nowrap;
-}
-.archive-chip .chip-x {
-    position: absolute;
-    top: -8px;
-    right: -6px;
-    transform: skewX(var(--unskew-deg));
-    font-size: 9pt;
-    line-height: 1;
-    background: #000;
-    color: #fff;
-    border: 1px solid #fff;
-    width: 16px;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-}
-
-/* ============================================================
-   MODAL TAGS (invariato)
-   ============================================================ */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    z-index: 100;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 80px;
-}
-.modal.open { display: flex; }
-
-.modal-box {
-    width: 80%;
-    max-width: 960px;
-    border: 1px solid #000;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    max-height: 70vh;
-}
-
-.modal-fixed {
-    flex-shrink: 0;
-    padding: 30px 40px 20px;
-    border-bottom: 1px solid #000;
-}
-
-.modal-top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    gap: 20px;
-}
-
-.parallelogram-modal {
-    display: flex;
-    align-items: center;
-    height: 36px;
-    border: 1px solid #000;
-    transform: skewX(var(--skew-deg));
-    flex: 1;
-    padding: 0 16px;
-    gap: 8px;
-}
-.parallelogram-modal .search-icon,
-.parallelogram-modal .modal-search-input {
-    transform: skewX(var(--unskew-deg));
-}
-.parallelogram-modal .search-icon {
-    display: flex;
-    align-items: center;
-    color: #aaa;
+.search-icon-svg {
     flex-shrink: 0;
 }
-.modal-search-input {
+
+#search-input {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 20px; 
     border: none;
     outline: none;
     background: none;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 14pt;
+    color: #aaa;
     width: 100%;
+}
+
+#search-input::placeholder {
+    color: #aaa;
+}
+
+/* ============================================================
+   GRIGLIA PROGETTI — Layout a quadrati (Bloccato a misura massima)
+   ============================================================ */
+.table-container {
+    border-top: 2px solid var(--text);
+    border-bottom: 2px solid var(--text);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2px; 
+    background-color: var(--text); 
+    
+    max-width: 1728px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Ogni progetto è un quadrato perfetto */
+.table-row-wrapper {
+    background: var(--bg);
+    position: relative;
+    aspect-ratio: 1 / 1; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Immagine quadrata, perfettamente centrata */
+.row-image {
+    max-width: 350px;
+    max-height: 350px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    z-index: 1;
+}
+
+/* Struttura informativa fissa e pulita senza opacità iniziale globale */
+.row-content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 33px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background: rgba(255, 255, 255, 0); 
+    pointer-events: none; 
+}
+
+/* Titolo sempre visibile in alto a sinistra */
+.row-title {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1.1;
+    margin: 0;
+    text-align: left;
+    pointer-events: auto;
+}
+
+/* BLOCCO DESCRITTIVO INTERMEDIO: Gestisce l'effetto mouse over ad altezza fissa e controllata */
+.description-hover-container {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0); 
+    padding: 20px 33px;
+    pointer-events: auto; 
+    transition: background 0.2s ease;
+    
+    /* Posizionamento fisso rispetto alle scritte inferiori */
+    bottom: 90px; 
+    height: 200px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* La descrizione interna compare in hover senza barre di scorrimento */
+.row-description {
+    font-size: 13pt;
+    line-height: 1.4;
+    color: #000000;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    overflow: visible; 
+    max-height: 100%; 
+}
+
+/* Attivazione del mouse over locale sulla descrizione */
+.description-hover-container:hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+.description-hover-container:hover .row-description {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Area inferiore con elementi e link attivi */
+.overlay-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    pointer-events: auto;
+}
+
+/* Autore e Data in basso a sinistra */
+.row-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 4px;
+}
+.row-meta-author {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+}
+.row-meta-date {
+    font-size: 14px;
+    font-weight: normal;
+    color: #000000;
+    line-height: 1.2; /* Corretto refuso */
+}
+
+/* Tasto View Web Site in basso a destra */
+.btn-view-site {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--text);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* ============================================================
+   UI Elements (Menu Drag Down Tags e Sort By Speculari)
+   ============================================================ */
+.dropdown-container {
+    position: relative;
+    width: 100%; 
+}
+
+/* Menu Drag Down larghi esattamente come i rettangoli di appartenenza */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: calc(100% + 17px); 
+    left: -35px;
+    width: calc(100% + 70px); 
+    background: #fff;
+    border: 2px solid #000;
+    border-top: none;
+    z-index: 10;
+    max-height: 350px; 
+    overflow-y: auto;   
+}
+
+/* Interfaccia di ricerca interna dei tag */
+.dropdown-search-row {
+    padding: 10px 33px;
+    background: #fff;
+    border-bottom: 2px solid #000;
+    border-top: 1px solid #000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 11;
+}
+
+.dropdown-search-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 13pt;
+    color: #000;
+    background: transparent;
+}
+.dropdown-search-input::placeholder {
+    color: #aaa;
+}
+
+/* Opzioni di ordinamento e voci tag */
+.sort-option, .tag-option {
+    padding: 10px 33px;
+    cursor: pointer;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 13pt;
+    text-align: left;
+    text-transform: capitalize;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sort-option:not(:last-child), .tag-option:not(:last-child) {
+    border-bottom: 2px solid #000;
+}
+
+.sort-option[data-sort="author"] {
+    border-top: 1px solid #000;
+}
+
+.sort-option:hover, .tag-option:hover { background: #000; color: #fff; }
+.sort-option.active, .tag-option.active { background: #000; color: #fff; }
+.sort-option .option-x, .tag-option .option-x { font-size: 10pt; margin-left: 10px; line-height: 1; }
+
+.show { display: block; }
+
+/* ============================================================
+   CHIPS DEI TAG ATTIVI (Allineamento a 33px bilaterale)
+   ============================================================ */
+.active-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: -80px;      
+    margin-bottom: 80px;   
+    margin-left: -67px;  
+    margin-right: -67px; 
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.archive-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    padding: 0;
+}
+
+.archive-chip .tag-label {
+    font-size: 13pt;
+    text-transform: capitalize;
+}
+
+.archive-chip .chip-x {
+    font-size: 10pt;
+    color: #aaa;
+    transition: color 0.2s;
+}
+
+.archive-chip:hover .chip-x {
     color: #000;
 }
-.modal-search-input::placeholder { color: #bbb; }
 
-.parallelogram-close {
+/* ============================================================
+   STRUTTURA CONTROLLI DI PAGINAZIONE (< 1 >)
+   ============================================================ */
+.pagination-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 36px;
-    border: 1px solid #000;
-    transform: skewX(var(--skew-deg));
-    background: none;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: background 0.2s, color 0.2s;
-}
-.parallelogram-close:hover { background: #000; color: #fff; }
-.close-inner {
-    display: inline-block;
-    transform: skewX(var(--unskew-deg));
-    font-size: 14pt;
-    line-height: 1;
-}
-
-.modal-active-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    min-height: 0;
-}
-.modal-active-tags:empty { display: none; }
-
-.modal-scrollable {
-    overflow-y: auto;
-    padding: 24px 40px 30px;
-    flex: 1;
-}
-.modal-scrollable::-webkit-scrollbar { width: 4px; }
-.modal-scrollable::-webkit-scrollbar-track { background: transparent; }
-.modal-scrollable::-webkit-scrollbar-thumb { background: #000; }
-
-.tags-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.tag-btn {
-    height: 36px;
-    min-width: 120px;
-    border: 1px solid #000;
-    transform: skewX(var(--skew-deg));
-    background: none;
-    cursor: pointer;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    transition: background 0.15s, color 0.15s;
+    gap: 2px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    
+    max-width: 1728px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
-.tag-btn .tag-label {
-    display: inline-block;
-    transform: skewX(var(--unskew-deg));
-    padding: 0 18px;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 13pt;
-    white-space: nowrap;
-}
-.tag-btn.active { background: #000; color: #fff; }
 
-.tag-active-chip {
+.page-arrow-btn {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--text);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: opacity 0.2s;
+}
+
+.page-current-display {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text);
+    padding: 5px 10px;
+}
+
+/* ============================================================
+   STRUTTURA A 3 COLONNE DISTRIBUITE EQUAMENTE NEL FOOTER NERO
+   ============================================================ */
+.main-footer {
+    background-color: #000000;
+    width: 100%;
+    padding: 50px 0;
+    margin-top: 80px;
+}
+
+.footer-inner {
+    max-width: 1728px;
+    margin: 0 auto;
+    padding: 0 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2px;
+}
+
+.footer-column {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Prima colonna: Logo a 33px a sinistra e blocco Navigate di fianco */
+.footer-column.block-left {
+    justify-content: flex-start;
+    gap: 210px; 
+}
+
+/* Seconda colonna: Allineamento speculare con l'inizio della seconda card */
+.footer-column.block-center {
+    justify-content: center;
+    padding-left: 33px; 
+}
+
+/* Terza colonna: Ripristinato come impostato originariamente da te */
+.footer-column.block-right {
+    justify-content: center; 
+    margin-right: -67px; 
+}
+
+/* Gestione logo invertito bianco */
+.footer-logo {
+    height: 25px;
+    width: auto;
+    display: block;
+    filter: invert(1);
+    margin-left: -67px; /* 100px padding - 67px = 33px dal bordo sinistro */
+}
+
+/* Layout dei blocchi Titolazione + Link */
+.footer-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+/* Allineamento a destra degli elementi interni (testi e contenitori) */
+.footer-group.align-right {
+    text-align: right;
+    align-items: center;
+}
+
+/* Stile per i titoli "Navigate", "NASA's web site" e "Follow NASA" */
+.footer-title {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+
+/* Contenitore dei link classici in colonna */
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links.footer-social-icons {
+    flex-direction: row;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 15px;
+    transition: opacity 0.2s;
+}
+
+.footer-links a:hover { opacity: 0.8; }
+.footer-links a.active-footer-page { text-decoration: underline; }
+
+
+
+.footer-social-icons {
+    display: flex;
+    flex-direction: row; 
+    gap: 16px;           
+    justify-content: center; /* Allinea le icone a sinistra, sotto "Follow NASA" */
+    align-items: center;
+    width: auto;
+}
+
+.footer-social-icons {
+    margin-right: 0 !important;
+}
+
+.footer-social-icons a {
+    color: #ffffff;      /* Rende visibili le icone bianche su fondo nero */
+    display: inline-flex;
+    transition: opacity 0.2s ease;
+}
+
+.footer-social-icons a:hover {
+    opacity: 0.7;
+}
+
+
+/* ============================================================
+   MEDIA QUERY — AGGIUNTA BORDINI LATERALI SU SCHERMI ESTESI (> 1728px)
+   ============================================================ */
+@media (min-width: 1729px) {
+    .controls-bar {
+        border-left: 2px solid var(--text);
+        border-right: 2px solid var(--text);
+    }
+    .table-container {
+        border-left: 2px solid var(--text);
+        border-right: 2px solid var(--text);
+    }
+    .main-footer {
+        border-left: 2px solid #000;
+        border-right: 2px solid #000;
+        max-width: 1728px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* ============================================================
+   FIX VISIBILITÀ E PULIZIA CARD NELLA HOME
+   ============================================================ */
+
+/* Attiva i click sui link della Home */
+.home-static-card .row-content-overlay {
+    pointer-events: auto !important;
+}
+
+/* NASCONDE TOTALMENTE LA DESCRIZIONE NELLA HOME PER EVITARE IL MACELLO VISIVO */
+.home-static-card .static-description-container {
+    display: none !important;
+}
+
+/* Stile del pulsante View Playlist */
+.home-static-card .btn-view-site {
+    color: var(--text) !important;
+    text-decoration: underline !important;
+    font-weight: bold !important;
+    font-size: 20px !important;
+    z-index: 10;
     position: relative;
-    height: 36px;
-    min-width: 120px;
-    border: 1px solid #000;
-    transform: skewX(var(--skew-deg));
-    background: #000;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s, color 0.15s;
-}
-.tag-active-chip .tag-label {
-    display: inline-block;
-    transform: skewX(var(--unskew-deg));
-    padding: 0 22px 0 18px;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 13pt;
-    white-space: nowrap;
-}
-.tag-active-chip .chip-x {
-    position: absolute;
-    top: -8px;
-    right: -6px;
-    transform: skewX(var(--unskew-deg));
-    font-size: 9pt;
-    line-height: 1;
-    background: #000;
-    color: #fff;
-    border: 1px solid #fff;
-    width: 16px;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
 }
