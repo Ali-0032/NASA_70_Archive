@@ -25,6 +25,7 @@ I principali riferimenti progettuali per lo sviluppo del sito sono stati l'archi
 ## Design dell’interfaccia e modalità di interazione
 ### Design dell'interfaccia:
 L’estetica dell'interfaccia si ispira al brutalismo digitale, in particolare per quanto riguarda l’uso di titolazioni molto grandi e la struttura a griglia adottata per le card. Questa scelta stilistica è stata fatta con lo scopo di trasmettere il senso di tecnicità e rigore scientifico che caratterizzano i dati della NASA. Inoltre, le dimensioni imponenti dei titoli sono state pensate per richiamare visivamente il concetto di immensità legato all'universo e ai corpi celesti studiati dall'agenzia.
+Infine, il carattere tipografico usato per il sito web è l’Helvetica, utilizzato nelle versioni Bold e Regular in quanto font istituzionale della NASA.
 
 ### Modalità di interazione:
 
